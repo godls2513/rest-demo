@@ -17,7 +17,7 @@ public class PostJacksonController {
         this.objectMapper = objectMapper;
     }
 
-    // jackson을 이용한 게시물 목록 구현
+    // jackson을 이용한 게시물 목록 구현하는 코드
     @GetMapping("/jackson")
     public List<PostDto> list2() {
         List<PostDto> postDto = List.of(
