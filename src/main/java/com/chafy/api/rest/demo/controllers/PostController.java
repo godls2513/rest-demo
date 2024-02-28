@@ -45,6 +45,7 @@ public class PostController {
     // ObjectMapper의 readValue()를 생략해도 알아서 스프링이 해결해준다.
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin
     public PostDto create(@RequestBody(required = false) PostDto postDto) {
         // 스프링에서 자동으로 Jackson을 지원해주니까 예외처리할 필요도 없고 코드도 PostDto를 받아와서 반환하기만 하면된다.
         postDto.setId("1004");

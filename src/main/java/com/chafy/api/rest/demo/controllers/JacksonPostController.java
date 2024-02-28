@@ -11,6 +11,11 @@ import java.util.*;
 @RestController
 @RequestMapping("/jackson_posts")
 public class JacksonPostController {
+    /*
+        스프링 DI를 통해 컨트롤러에서 Jackson ObjectMapper를 얻는다.
+        스프링이 등록된 객체(Bean)를 관리한다.
+        생성자에 명시하면 받아서 사용할 수 있다. 사용 = 의존성/의존관계를 주입 받는다 (Dependency Injection)
+     */
     private final ObjectMapper objectMapper;
 
     public JacksonPostController(ObjectMapper objectMapper) {
