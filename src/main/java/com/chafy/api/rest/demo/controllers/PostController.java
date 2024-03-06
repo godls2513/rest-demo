@@ -9,7 +9,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/posts")
-//@CrossOrigin
+@CrossOrigin
 public class PostController {
     private final ObjectMapper objectMapper;
 
@@ -24,10 +24,7 @@ public class PostController {
 
     // jackson을 이용한 게시물 목록 구현하는 코드
     @GetMapping
-//    @CrossOrigin("https://seed2whale.github.io")
     public List<PostDto> list() {
-
-//        response.addHeader("Access-Control-Allow-Origin", "https://seed2whale.github.io");
         return postDtos;
     }
 
@@ -37,7 +34,6 @@ public class PostController {
     @GetMapping("/{id}")
     public PostDto detail(@PathVariable("id") String id) {
         PostDto postDto = new PostDto(id, "제목", "테스트입니다.");
-
         return postDto;
     }
 
@@ -45,7 +41,6 @@ public class PostController {
     // ObjectMapper의 readValue()를 생략해도 알아서 스프링이 해결해준다.
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @CrossOrigin
     public PostDto create(@RequestBody(required = false) PostDto postDto) {
         // 스프링에서 자동으로 Jackson을 지원해주니까 예외처리할 필요도 없고 코드도 PostDto를 받아와서 반환하기만 하면된다.
         postDto.setId("1004");
@@ -56,10 +51,8 @@ public class PostController {
     // 게시물 수정
 //  @PatchMapping("/{id}")
     @PutMapping("/{id}")
-//    @PatchMapping("/{id}")
     public PostDto update(@PathVariable("id") String id, @RequestBody PostDto postDto) {
         postDto.setId(id);
-
         return postDto;
     }
 

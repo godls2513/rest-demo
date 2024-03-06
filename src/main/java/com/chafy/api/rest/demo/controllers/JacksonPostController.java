@@ -37,16 +37,28 @@ public class JacksonPostController {
     @GetMapping("/jackson/{id}")
     public String detail(@PathVariable("id") String id) throws JacksonException {
         PostDto postDto = new PostDto(id, "제목", "내용이다.");
-        String s = objectMapper.writeValueAsString(postDto);
-        return s;
+
+        /*
+            DTO를 JSON 문자열 데이터로 변환한다.(직렬화)
+            직렬화를 위한 메서드는 여러가지가 있는데...
+            writeValueAsString()은 기능적으로 writeValue()와 동일하지만 매개변수가 하나밖에 들어가지 않아 더 효율적이다.
+         */
+        return objectMapper.writeValueAsString(postDto); // 스프링에 Jackson ObjectMapper가 내장되어 있어 바로 사용가능하다.
     }
 
-    //게시물 상세
-    //스프링에 내장된 Jackson을 바로 사용할 수 있다.
+    /*
+        게시물 상세
+        스프링에 내장된 Jackson을 바로 사용할 수 있다.
+     */
     @GetMapping("/{id}")
     public PostDto detail2(@PathVariable("id") String id) {
         PostDto postDto = new PostDto(id, "제목", "테스트입니다.");
 
+        /*
+            detail()에서 writeValueAsString()을 사용하지 않고
+            그냥 메서드 타입을 PostDto로 했을 뿐인데 자동으로 JSON 데이터로 출력한다.
+            DTO, 즉 getter와 setter가 있는 클래스를 반환할 때는 자동으로 Jackson ObjectMapper를 통해 JSON 데이터를 반환하나보다.
+         */
         return postDto;
     }
 
