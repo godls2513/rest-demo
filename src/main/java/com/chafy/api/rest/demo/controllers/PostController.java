@@ -2,6 +2,7 @@ package com.chafy.api.rest.demo.controllers;
 
 import com.chafy.api.rest.demo.dto.*;
 import com.fasterxml.jackson.databind.*;
+import jakarta.servlet.http.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +10,6 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/posts")
-@CrossOrigin
 public class PostController {
     private final ObjectMapper objectMapper;
 
@@ -24,7 +24,9 @@ public class PostController {
 
     // jackson을 이용한 게시물 목록 구현하는 코드
     @GetMapping
-    public List<PostDto> list() {
+//    @CrossOrigin
+    public List<PostDto> list(HttpServletResponse response) {
+//        response.addHeader("Access-Control-Allow-Origin", "*");
         return postDtos;
     }
 
