@@ -17,7 +17,11 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.github.f4b6a3:ulid-creator:5.1.0'
+	implementation 'com.github.f4b6a3:tsid-creator:5.2.0'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
