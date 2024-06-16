@@ -20,22 +20,19 @@ public class PostController {
 
     @GetMapping
     public List<PostDto> list(HttpServletResponse response) {
-//      response.addHeader("Access-Control-Allow-Origin", "*");
+        //response.addHeader("Access-Control-Allow-Origin", "*");
         List<PostDto> postDtos = postService.getPosts();
         return postDtos;
     }
 
 
     //게시물 상세
-    //스프링에 내장된 Jackson을 바로 사용할 수 있다.
     @GetMapping("/{id}")
     public PostDto detail(@PathVariable("id") String id) {
         PostDto postDto = postService.getPostDto(id);
         return postDto;
     }
 
-    // 스프링에 내장된 Jackson을 이용한 게시물 생성
-    // ObjectMapper의 readValue()를 생략해도 알아서 스프링이 해결해준다.
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PostDto create(@RequestBody(required = false) PostDto postDto) {
